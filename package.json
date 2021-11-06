@@ -1,0 +1,21 @@
+{
+    "name": "personal-notes",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/app.js",
+    "scripts": {
+        "start": "node .",
+        "build": "tsc -p .",
+        "dev": "nodemon src/app.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ubarilan/personal-notes.git"
+    },
+    "author": "ubarilan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ubarilan/personal-notes/issues"
+    },
+    "homepage": "https://github.com/ubarilan/personal-notes#readme"
+}
