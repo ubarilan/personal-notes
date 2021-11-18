@@ -9,7 +9,7 @@ import { initMainRouter } from './lib/router';
 config();
 
 export default class PersonalNotes {
-    private mysqlConnection: Connection;
+    protected mysqlConnection: Connection;
 
     protected webApp: Application;
     protected mainRouter: Router;
@@ -23,7 +23,8 @@ export default class PersonalNotes {
         database_host: string,
         database_port: number,
         database_user: string,
-        database_pass: string
+        database_pass: string,
+        database_name: string
     ) {
         this.webApp = express();
         this.initRouters();
@@ -32,7 +33,8 @@ export default class PersonalNotes {
             database_host,
             database_port,
             database_user,
-            database_pass
+            database_pass,
+            database_name
         );
     }
 
@@ -40,14 +42,16 @@ export default class PersonalNotes {
         database_host: string,
         database_port: number,
         database_user: string,
-        database_pass: string
+        database_pass: string,
+        database_name: string
     ): void {
         try {
             this.mysqlConnection = connectToDatabase(
                 database_host,
                 database_port,
                 database_user,
-                database_pass
+                database_pass,
+                database_name
             );
         } catch (error) {
             console.log('lmfao');
@@ -75,5 +79,10 @@ export default class PersonalNotes {
 
         this.webApp.listen(80);
         console.log('web server running on port 80');
+    }
+
+    // Utility methods
+    public checkAuth(req: Request): boolean {
+        return req.session.sessionExpiry > Date.now();
     }
 }
